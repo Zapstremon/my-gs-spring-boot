@@ -24,10 +24,11 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus-cred-id', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
                     sh '''
-                        curl -u $NEXUS_USER:$NEXUS_PASS \
-                        --upload-file target/spring-boot-complete-0.0.1-SNAPSHOT.jar \
-                        http://10.17.92.44:8081/repository/homeworksix/spring-boot-complete-0.0.1-SNAPSHOT.jar
-                    '''
+                       curl -u $NEXUS_USER:$NEXUS_PASS \
+                       --upload-file target/spring-boot-complete-0.0.1-SNAPSHOT.jar \
+                       http://10.17.92.44:8081/repository/homeworksix-raw/spring-boot-complete-0.0.1-SNAPSHOT.jar
+                       '''
+
                 }
             }
         }
