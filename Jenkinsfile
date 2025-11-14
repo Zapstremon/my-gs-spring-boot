@@ -1,21 +1,30 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.8.6' // Replace with your configured Maven version name in Jenkins
+    }
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build & Deploy') {
             steps {
                 sh 'mvn clean deploy'
             }
         }
+    }
 
-        stage('Upload to Nexus') {
-            steps {
-                sh '''
-                curl -v -u admin:admin123 \
-                --upload-file target/spring-boot-complete-0.0.1-SNAPSHOT.jar \
-                http://10.17.92.44:8081/repository/homeworksix/com/example/springboot/0.0.1/spring-boot-complete-0.0.1-SNAPSHOT.jar
-                '''
-            }
+    post {
+        success {
+            echo '✅ Build and deployment to Nexus completed successfully.'
+        }
+        failure {
+            echo '❌ Build or deployment failed. Check console output for details.'
         }
     }
 }
