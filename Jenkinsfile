@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.8.6' // Replace with the name of your configured Maven version in Jenkins
+        maven 'Maven 3.8.6' // Use the name of your configured Maven version in Jenkins
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build and deployment to Nexus completed successfully.'
+            echo '✅ Maven build and Nexus deployment completed successfully.'
         }
         failure {
             echo '❌ Build or deployment failed. Check console output for details.'
