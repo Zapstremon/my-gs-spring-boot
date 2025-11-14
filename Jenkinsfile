@@ -35,7 +35,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                archiveArtifacts artifacts: 'target/spring-boot-complete-0.0.1-SNAPSHOT.jar', fingerprint: true
         }
     }
 }
